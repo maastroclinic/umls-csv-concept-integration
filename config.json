@@ -1,22 +1,32 @@
 {
   "mrconso_map" : {
-  "cui":["UMLS_ID","id"],
-  "lat":["ENG"],
-  "ts":["P"],
-  "lui":["LUI_X"],
-  "stt":["PF"],
-  "sui":["SUI_X"],
-  "ispref":["Y"],
-  "aui":["AUI_X"],
-  "saui":["AUI_X"],
-  "scui":["RADLEX_ENG"],
-  "sdui":["AUI_X"],
-  "sab":["AUI_X"],
-  "tty":["AUI_X"],
-  "code":["AUI_X"],
-  "str":["Preferred Label"],
-  "srl":["AUI_X"],
-  "suppress":["N"],
-  "cvf":["256"]
+    "cui":["id"],
+    "lat":["ENG"],
+    "ts":["P"],
+    "lui":["LUI_X"],
+    "stt":["PF"],
+    "sui":["SUI_X"],
+    "ispref":["Y"],
+    "aui":["AUI_X"],
+    "saui":["SAUI_X"],
+    "scui":["RADLEX_ENG"],
+    "sdui":["SDUI_X"],
+    "sab":["SAB_X"],
+    "tty":["TTY_X"],
+    "code":["CODE_X"],
+    "str":["Preferred Label"],
+    "srl":["SRL_X"],
+    "suppress":["N"],
+    "cvf":["256"]
+  },
+  "mrstry_map":{
+    "cui":["id"],
+    "tui":["T021"],
+    "stn":["A1.4.1.2.1"],
+    "sty":["Organic Chemical"],
+    "atui":["AT45562015"],
+    "cvf":["256"]
   }
 }
+
+
