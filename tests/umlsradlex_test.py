@@ -1,9 +1,9 @@
 import unittest
 from umlsradlex.umlsradlex import UMLSRadlex
 
-radlex_csv = "./../resources/RADLEX.csv"
+radlex_csv = "./../resources/RADLEX-2.csv"
 output_dir = "./../out"
-config_file = "'./../config.json"
+config_file = "./../config.json"
 
 
 class TestUMLSIntegration(unittest.TestCase):

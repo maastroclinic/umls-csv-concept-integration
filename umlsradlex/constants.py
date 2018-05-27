@@ -4,26 +4,11 @@ HEADERS_MRCONSO = [
 ]
 
 HEADERS_RADLEX = [
-    'Class ID', 'Preferred Label', 'Synonyms', 'Definitions', 'Obsolete', 'CUI',
-    'Semantic Types', 'Parents', 'AAL', 'ACR_ID', 'ACR_Term', 'Acronym', 'Anatomical_Site',
-    'Anterior_to,Attaches_to', 'Blood_Supply_of,Bounded_by', 'Bounds,Branch_Of', 'Branch_Part_of,Changes made to class',
-    'CMA_Label', 'Comment,Constitutional_Part_Of', 'Contained_In,Contains,Continuous_With', 'Created mm/dd/yyyy',
-    'Definition,Distal_to', 'Drains_Into,External_to', 'FMAID', 'Freesurfer,Has_Blood_Supply',
-    'Has_Branch', 'Has_Branch_Part', 'Has_Constitutional_Part', 'Has_Entrapment_Site', 'Has_Innervation_Source',
-    'Has_insertion', 'Has_Member,Has_origin', 'Has_Part', 'Has_Regional_Part', 'Has_Subtype',
-    'http://data.bioontology.org/metadata/prefixIRI', 'id', 'Image_URL,Inferior_to', 'Innervates,Insertion_of',
-    'Is_A', 'JHU_DTI-81', 'JHU_White-Matter_Tractography_Atlas', 'language', 'Left_Lateral_to,Lymphatic_Drainage',
-    'Lymphatic_Drainage_Of,May_Be_Caused_By', 'May_Cause,Member_Of', 'Misspelling of term', 'name,Name,Neurolex_ID',
-    'Neurolex_Term,Non-English_name', 'Origin_of', 'Part_Of', 'Posterior_to,Preferred_name', 'Preferred_Name_for_Obsolete',
-    'Preferred_name_German', 'Projects_From,Projects_To', 'Proximal_to', 'Radlex version of class change',
-    'Receives_attachment_from', 'Receives_Drainage_From', 'Receives_Input_From,Receives_Projection_From',
-    'Regional_Part_Of,Related_modality', 'Replaced_by,Right_Lateral_to', 'Segment_Of', 'Sends_Output_To',
-    'SNOMED_ID', 'SNOMED_Term', 'Source', 'Superior_to', 'Surrounded_by', 'Surrounds', 'Synonym', 'Synonym_German',
-    'Talairach', 'Term type', 'Term_Status', 'Tributary_Of', 'UMLS_ID', 'UMLS_Term', 'Unsanctioned Term'
+    'Class ID', 'Preferred Label', 'Synonyms', 'Definitions', 'Obsolete', 'CUI', 'Semantic Types', 'Parents', 'AAL', 'ACR_ID', 'ACR_Term', 'Acronym', 'Anatomical_Site', 'Anterior_to', 'Attaches_to', 'Blood_Supply_of', 'Bounded_by', 'Bounds', 'Branch_Of', 'Branch_Part_of', 'Changes made to class', 'CMA_Label', 'Comment', 'Constitutional_Part_Of', 'Contained_In', 'Contains', 'Continuous_With', 'Created mm/dd/yyyy', 'Definition', 'Distal_to', 'Drains_Into', 'External_to', 'FMAID', 'Freesurfer', 'Has_Blood_Supply', 'Has_Branch', 'Has_Branch_Part', 'Has_Constitutional_Part', 'Has_Entrapment_Site', 'Has_Innervation_Source', 'Has_insertion', 'Has_Member', 'Has_origin', 'Has_Part', 'Has_Regional_Part', 'Has_Subtype', 'http://data.bioontology.org/metadata/prefixIRI', 'id', 'Image_URL', 'Inferior_to', 'Innervates', 'Insertion_of', 'Is_A', 'JHU_DTI-81', 'JHU_White-Matter_Tractography_Atlas', 'language', 'Left_Lateral_to', 'Lymphatic_Drainage', 'Lymphatic_Drainage_Of', 'May_Be_Caused_By', 'May_Cause', 'Member_Of', 'Misspelling of term', 'name', 'Name', 'Neurolex_ID', 'Neurolex_Term', 'Non-English_name', 'Origin_of', 'Part_Of', 'Posterior_to', 'Preferred_name', 'Preferred_Name_for_Obsolete', 'Preferred_name_German', 'Projects_From', 'Projects_To', 'Proximal_to', 'Radlex version of class change', 'Receives_attachment_from', 'Receives_Drainage_From', 'Receives_Input_From', 'Receives_Projection_From', 'Regional_Part_Of', 'Related_modality', 'Replaced_by', 'Right_Lateral_to', 'Segment_Of', 'Sends_Output_To', 'SNOMED_ID', 'SNOMED_Term', 'Source', 'Superior_to', 'Surrounded_by', 'Surrounds', 'Synonym', 'Synonym_German', 'Talairach', 'Term type', 'Term_Status', 'Tributary_Of', 'UMLS_ID', 'UMLS_Term', 'Unsanctioned Term'
 ]
 
 HEADERS_MRSTY = [
-    'cui', 'sty', 'hier' 'desc', 'sid', 'num'
+    'cui', 'tui', 'stn','sty', 'atui', 'cvf'
 ]
 
 NEGATIONS = {'none', 'non', 'neither', 'nor', 'no', 'not'}

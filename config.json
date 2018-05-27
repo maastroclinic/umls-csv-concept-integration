@@ -1,32 +1,22 @@
 {
-  "mrconso_map" : {
-    "cui":["id"],
-    "lat":["ENG"],
-    "ts":["P"],
-    "lui":["LUI_X"],
-    "stt":["PF"],
-    "sui":["SUI_X"],
-    "ispref":["Y"],
-    "aui":["AUI_X"],
-    "saui":["SAUI_X"],
-    "scui":["RADLEX_ENG"],
-    "sdui":["SDUI_X"],
-    "sab":["SAB_X"],
-    "tty":["TTY_X"],
-    "code":["CODE_X"],
-    "str":["Preferred Label"],
-    "srl":["SRL_X"],
-    "suppress":["N"],
-    "cvf":["256"]
+  "cui_mode" : "Class ID",
+  "mr_conso_overwrites" : {
+    "lat": "ENG",
+    "ts": "P",
+    "stt": "PF",
+    "sab": "RADLEX_ENG",
+    "tty": "PT",
+    "code": "71620000",
+    "str": "Preferred Label",
+    "suppress": "N",
+    "cvf": "256"
   },
-  "mrstry_map":{
-    "cui":["id"],
-    "tui":["T021"],
-    "stn":["A1.4.1.2.1"],
-    "sty":["Organic Chemical"],
-    "atui":["AT45562015"],
-    "cvf":["256"]
+  "mr_conso_synonyms" : {
+    "str_synonyms": "synonyms",
+    "str_synonyms_delimiter": "|"
+  },
+  "mr_sty_overwrites" : {
+    "tui": "T021",
+    "cvf": "256"
   }
 }
-
-

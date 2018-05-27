@@ -1,6 +1,19 @@
 import csv
-import configparser
 import json
+
+from umlsradlex.constants import *
+
+
+def get_overwrites(header, overwrite_map):
+    overwrites = {}
+    for k, v in overwrite_map.items():
+        try:
+            index = header.index(k)
+            overwrites[index] = v
+        except ValueError as err:
+            print(header)
+            print("ValueError not in header: {0}".format(err))
+    return overwrites
 
 
 class UMLSRadlex(object):
@@ -20,20 +33,63 @@ class UMLSRadlex(object):
         with open(config_file, 'r') as f:
             self.config = json.load(f)
 
+        self.cui_index = HEADERS_RADLEX.index("Class ID")
+        self.str_index = HEADERS_RADLEX.index(self.config['mr_conso_overwrites']['str'])
+        self.overwrites_mr_conso = get_overwrites(HEADERS_MRCONSO, self.config['mr_conso_overwrites'])
+        self.overwrites_mr_stry = get_overwrites(HEADERS_MRSTY, self.config['mr_sty_overwrites'])
+
+
     def set_indices(self):
         print('set config')
+        for column in HEADERS_MRCONSO:
+            print('set column:' + column)
+
+
+    def get_index(self, key):
+        try:
+            self.cui_index = HEADERS_MRCONSO.index(self.config['mrconso_map'][key])
+        except ValueError as err:
+            print("ValueError: {0} default value set".format(err))
+
 
 
     def integrate(self):
         with open(self.radlex_csv, "rt", encoding='utf8') as csvfile, \
-                open(self.output_dir + '/out.csv', "w", encoding='utf8', newline="\n") as outfile:
+                open(self.output_dir + MR_CONSO_SUB_PATH, "w", encoding='utf8', newline="\n") as mr_conso, \
+                open(self.output_dir + MRSTY_SUB_PATH, "w", encoding='utf8', newline="\n") as mr_sty:
 
-                reader = csv.reader(csvfile, delimiter=',', quotechar='|')
-                next(reader, None)  # skip the headers
-                writer = csv.writer(outfile, delimiter='|')
-                for row in reader:
+            reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            next(reader, None)  # skip the headers
+            writer_mr_conso = csv.writer(mr_conso, delimiter='|')
+            writer_mr_sty = csv.writer(mr_sty, delimiter='|')
 
-                        printrow = ', '.join(row)
-                        print(printrow)
-                        writer.writerow(row)
+            index = 0
+            for radlex_row in reader:
+                index = index+1
+                try:
+                    mr_conso_row = HEADERS_MRCONSO
+                    mr_sty_row = HEADERS_MRSTY
 
+                    cui = radlex_row[self.cui_index].replace('http://www.radlex.org/RID/#', '')
+
+                    for i, v in self.overwrites_mr_conso.items():
+                        mr_conso_row[i] = v
+
+                    mr_conso_row[0] = cui
+                    mr_conso_row[14] = radlex_row[self.str_index]
+
+                    printrow = ', '.join(mr_conso_row)
+                    print(printrow)
+                    writer_mr_conso.writerow(mr_conso_row)
+
+                    for i, v in self.overwrites_mr_stry.items():
+                        mr_sty_row[i] = v
+
+                    mr_sty_row[0] = cui
+
+                    printrow = ', '.join(mr_sty_row)
+                    print(printrow)
+                    writer_mr_sty.writerow(mr_sty_row)
+                except IndexError as err:
+                    print("radlex_row", radlex_row)
+                    print("IndexError: {0} ".format(err))
