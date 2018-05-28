@@ -90,8 +90,9 @@ class UMLSRadlex(object):
                     writer_mr_conso.writerow(mr_conso_row)
 
                     for synonym in radlex_row[self.synonyms_index].split("|"):
-                        mr_conso_row[14] = synonym
-                        writer_mr_conso.writerow(mr_conso_row)
+                        if len(synonym) > 1:
+                            mr_conso_row[14] = synonym
+                            writer_mr_conso.writerow(mr_conso_row)
 
                     for i, v in self.overwrites_mr_stry.items():
                         mr_sty_row[i] = v
