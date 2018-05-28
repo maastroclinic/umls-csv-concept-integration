@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 
 from umlsradlex.constants import *
 
@@ -30,6 +31,10 @@ class UMLSRadlex(object):
     def __init__(self, radlex_csv, output_dir, config_file):
         self.radlex_csv = radlex_csv
         self.output_dir = output_dir
+
+        if not os.path.exists(output_dir + META_DIR):
+            os.makedirs(output_dir + META_DIR)
+
         with open(config_file, 'r') as f:
             self.config = json.load(f)
 
