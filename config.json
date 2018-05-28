@@ -12,7 +12,7 @@
     "cvf": "256"
   },
   "mr_conso_synonyms" : {
-    "str_synonyms": "synonyms",
+    "str_synonyms": "Synonyms",
     "str_synonyms_delimiter": "|"
   },
   "mr_sty_overwrites" : {

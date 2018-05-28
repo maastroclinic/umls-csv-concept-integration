@@ -11,6 +11,8 @@ HEADERS_MRSTY = [
     'cui', 'tui', 'stn','sty', 'atui', 'cvf'
 ]
 
+RADLEX_PREFIX = 'http://www.radlex.org/RID/#'
+
 NEGATIONS = {'none', 'non', 'neither', 'nor', 'no', 'not'}
 
 ACCEPTED_SEMTYPES = {

@@ -35,6 +35,8 @@ class UMLSRadlex(object):
 
         self.cui_index = HEADERS_RADLEX.index("Class ID")
         self.str_index = HEADERS_RADLEX.index(self.config['mr_conso_overwrites']['str'])
+        self.synonyms_index = HEADERS_RADLEX.index(self.config['mr_conso_synonyms']['str_synonyms'])
+
         self.overwrites_mr_conso = get_overwrites(HEADERS_MRCONSO, self.config['mr_conso_overwrites'])
         self.overwrites_mr_stry = get_overwrites(HEADERS_MRSTY, self.config['mr_sty_overwrites'])
 
@@ -70,7 +72,7 @@ class UMLSRadlex(object):
                     mr_conso_row = HEADERS_MRCONSO
                     mr_sty_row = HEADERS_MRSTY
 
-                    cui = radlex_row[self.cui_index].replace('http://www.radlex.org/RID/#', '')
+                    cui = radlex_row[self.cui_index].replace(RADLEX_PREFIX, '')
 
                     for i, v in self.overwrites_mr_conso.items():
                         mr_conso_row[i] = v
@@ -81,6 +83,10 @@ class UMLSRadlex(object):
                     printrow = ', '.join(mr_conso_row)
                     print(printrow)
                     writer_mr_conso.writerow(mr_conso_row)
+
+                    for synonym in radlex_row[self.synonyms_index].split("|"):
+                        mr_conso_row[14] = synonym
+                        writer_mr_conso.writerow(mr_conso_row)
 
                     for i, v in self.overwrites_mr_stry.items():
                         mr_sty_row[i] = v
