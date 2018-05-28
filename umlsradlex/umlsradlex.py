@@ -78,7 +78,9 @@ class UMLSRadlex(object):
                     mr_sty_row = HEADERS_MRSTY
 
                     cui = radlex_row[self.cui_index].replace(RADLEX_PREFIX, '')
-
+                    if "RID" not in cui:
+                        continue
+                   
                     for i, v in self.overwrites_mr_conso.items():
                         mr_conso_row[i] = v
 
