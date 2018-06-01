@@ -2,7 +2,7 @@ import csv
 import json
 import os
 
-from umlsradlex.constants import *
+from umlscsv.constants import *
 
 
 def get_overwrites(header, overwrite_map):
@@ -17,7 +17,7 @@ def get_overwrites(header, overwrite_map):
     return overwrites
 
 
-class UMLSRadlex(object):
+class UMLScsv(object):
 
     # project modules
     try:
@@ -80,7 +80,7 @@ class UMLSRadlex(object):
                     cui = radlex_row[self.cui_index].replace(RADLEX_PREFIX, '')
                     if "RID" not in cui:
                         continue
-                   
+
                     for i, v in self.overwrites_mr_conso.items():
                         mr_conso_row[i] = v
 
