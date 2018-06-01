@@ -2,6 +2,12 @@
 
 Integrate concepts ontologies in csv format to the UMLS format for reuse concept extractors (e.g. cTakes, QuickUMLS).
 
+TODO
+-	Implement UMLS semantic types (currently everything is set to T021 Anatomical Site)
+-	Find a system to prevent conflicts with UMLS CUI (cTakes changes id RID13437 to C100013437)
+-	Make the implementation more generic so the ROO can be used next to the RadLex ontology
+
+
 ## 1. Formats 
 ### 1.1 UMLS
 
@@ -91,5 +97,4 @@ More info:
 ### 4.2 QuickUMLS
 
 https://github.com/Georgetown-IR-Lab/QuickUMLS
-
 
