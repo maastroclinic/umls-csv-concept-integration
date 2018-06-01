@@ -27,13 +27,13 @@ cTakes [Dictionary Creator GUI](https://cwiki.apache.org/confluence/display/CTAK
 
 MRCONSO.RRF
 
-| CUI( 0 ) | LANGUAGE( 1 ) | STATUS( 2 ) | FORM( 4 ) | SOURCE( 11 ) | TERM_TYPE( 12 ) | SOURCE_CODE( 13 ) | TEXT( 14 ) |
-|----------|---------------|-------------|-----------|--------------|-----------------|-------------------|------------|
+| CUI(0) | LANGUAGE(1) | STATUS(2) | FORM(4) | SOURCE(11) | TERM_TYPE(12) | SOURCE_CODE(13) | TEXT(14) |
+|--------|-------------|-----------|---------|------------|---------------|-----------------|----------|
 
 MRSTY.RRF
 
-| CUI( 0 ) | TUI( 1 ) |
-|----------|----------|
+| CUI(0) | TUI(1) |
+|--------|--------|
 
 
 ### 1.4 QuickUMLS
@@ -47,7 +47,7 @@ MRCONSO.RRF
   
 MRSTY.RRF
 
-| CUI( 0 ) | TUI( 1 ) |
+| CUI(0) | TUI(1) |
 |----------|----------|
 
 
