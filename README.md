@@ -70,7 +70,7 @@ MRSTY.RRF
 
 ### 3.1 Configuration in config.json
 
-- **convert_rid_to_cui:** when set to true, radlex RID is converted to UMLS CUI to be compatible with cTakes fast dictionary lookup. E.g. [RID13437](https://bioportal.bioontology.org/ontologies/RADLEX/?p=classes&conceptid=http%3A%2F%2Fwww.radlex.org%2FRID%2F%23RID13437) becomes C0013437.
+- **convert_rid_to_cui:** when set to true, radlex RID is converted to UMLS CUI to be compatible with cTakes fast dictionary lookup. E.g. Radlex ontology entity "lungs" with label [RID13437](https://bioportal.bioontology.org/ontologies/RADLEX/?p=classes&conceptid=http%3A%2F%2Fwww.radlex.org%2FRID%2F%23RID13437) becomes C0013437.
     **Make sure u don't mix up concepts!**
     
     - In MRCONSO.RRF:
