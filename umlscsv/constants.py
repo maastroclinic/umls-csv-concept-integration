@@ -12,6 +12,8 @@ HEADERS_MRSTY = [
 ]
 
 RADLEX_PREFIX = 'http://www.radlex.org/RID/#'
+RADLEX_PREFIX_RID = 'RID'
+UMLS_PREFIX_CUI = 'C'
 
 NEGATIONS = {'none', 'non', 'neither', 'nor', 'no', 'not'}
 

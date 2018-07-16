@@ -13,6 +13,8 @@ TODO
 
 Details about the UMLS RRF files can be found in the [UMLS Reference Manual](https://www.ncbi.nlm.nih.gov/books/NBK9685/)
 
+[Unique Identifiers in the Metathesaurus](https://www.nlm.nih.gov/research/umls/new_users/online_learning/Meta_005.html)
+
 UMLS extractors cTakes, QuickUMLS are using the following files:
 - [MRCONSO.RRF](https://www.ncbi.nlm.nih.gov/books/NBK9685/table/ch03.T.concept_names_and_sources_file_mr/?report=objectonly) Concept Names and Sources (3.3.4)
 - MRSTY.RRF Semantic Types (3.3.7) Currently all semantic types are set to T021 as configured in [config.json](config.json)
@@ -60,11 +62,24 @@ MRSTY.RRF
 ## 3. Usage
 
 1. Download csv (TODO support for other formats than RadLex)
-2. Configure output format in config.json
+2. Configure output format in [config.json](config.json)
 3. Run tests/umlscsv_test.py with correct parameters for in and output (TODO command line approach)
 4. The output folder is in UMLS installation format, compatible with:  
     - cTakes Dictionary Creator
     - QuickUMLS initialization 
+
+### 3.1 Configuration in config.json
+
+- **convert_rid_to_cui:** when set to true, radlex RID is converted to UMLS CUI to be compatible with cTakes fast dictionary lookup. E.g. [RID13437](https://bioportal.bioontology.org/ontologies/RADLEX/?p=classes&conceptid=http%3A%2F%2Fwww.radlex.org%2FRID%2F%23RID13437) becomes C0013437.
+    **Make sure u don't mix up concepts!**
+    
+    - In MRCONSO.RRF:
+
+            C0013437|ENG|P|lui|PF|sui|ispref|aui|saui|scui|sdui|RADLEX_ENG|PT|71620000|lungs|srl|N|256
+        
+    - In cTakes dictionary <dictionary_name>.script
+
+            INSERT INTO PREFTERM VALUES(13437,'lungs')     
 
     
 ## 4. Concept extractors

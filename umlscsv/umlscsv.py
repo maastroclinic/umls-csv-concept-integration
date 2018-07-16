@@ -44,7 +44,7 @@ class UMLScsv(object):
 
         self.overwrites_mr_conso = get_overwrites(HEADERS_MRCONSO, self.config['mr_conso_overwrites'])
         self.overwrites_mr_stry = get_overwrites(HEADERS_MRSTY, self.config['mr_sty_overwrites'])
-
+        self.is_convert_rid_to_cui = self.config['convert_rid_to_cui']
 
     def set_indices(self):
         print('set config')
@@ -59,6 +59,11 @@ class UMLScsv(object):
             print("ValueError: {0} default value set".format(err))
 
 
+    def convert_rid_to_cui(self, rid):
+        rid_number = rid.replace(RADLEX_PREFIX_RID, '')
+        while len(rid_number) < 7:
+            rid_number = '0' + rid_number
+        return UMLS_PREFIX_CUI + rid_number
 
     def integrate(self):
         with open(self.radlex_csv, "rt", encoding='utf8') as csvfile, \
@@ -77,9 +82,13 @@ class UMLScsv(object):
                     mr_conso_row = HEADERS_MRCONSO
                     mr_sty_row = HEADERS_MRSTY
 
-                    cui = radlex_row[self.cui_index].replace(RADLEX_PREFIX, '')
-                    if "RID" not in cui:
+                    rid = radlex_row[self.cui_index].replace(RADLEX_PREFIX, '')
+                    if RADLEX_PREFIX_RID not in rid:
                         continue
+
+                    cui = rid
+                    if self.is_convert_rid_to_cui:
+                        cui = self.convert_rid_to_cui(rid)
 
                     for i, v in self.overwrites_mr_conso.items():
                         mr_conso_row[i] = v
