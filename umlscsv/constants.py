@@ -11,8 +11,8 @@ HEADERS_MRSTY = [
     'cui', 'tui', 'stn','sty', 'atui', 'cvf'
 ]
 
-RADLEX_PREFIX = 'http://www.radlex.org/RID/#'
-RADLEX_PREFIX_RID = 'RID'
+ONTOLOGY_PREFIX = 'http://www.radlex.org/RID/#'
+ONTOLOGY_PREFIX_ID = 'RID'
 UMLS_PREFIX_CUI = 'C'
 
 NEGATIONS = {'none', 'non', 'neither', 'nor', 'no', 'not'}
