@@ -51,21 +51,49 @@ class UMLScsv(object):
         for column in HEADERS_MRCONSO:
             print('set column:' + column)
 
-
     def get_index(self, key):
         try:
             self.cui_index = HEADERS_MRCONSO.index(self.config['mrconso_map'][key])
         except ValueError as err:
             print("ValueError: {0} default value set".format(err))
 
+    def convert_rid_to_number(self, rid):
+        return rid.replace(RADLEX_PREFIX_RID, '')
 
     def convert_rid_to_cui(self, rid):
-        rid_number = rid.replace(RADLEX_PREFIX_RID, '')
-        while len(rid_number) < 7:
-            rid_number = '0' + rid_number
-        return UMLS_PREFIX_CUI + rid_number
+        rid_number = self.convert_rid_to_number(rid)
+        rid_number_7 = rid_number
+        while len(rid_number_7) < 7:
+            rid_number_7 = '0' + rid_number_7
+        return UMLS_PREFIX_CUI + rid_number_7
+
+    def write_mr_conso_row(self, writer, cui, str, is_pref, rid_number):
+        mr_conso_row = HEADERS_MRCONSO
+
+        for i, v in self.overwrites_mr_conso.items():
+            mr_conso_row[i] = v
+
+        mr_conso_row[0] = cui
+        mr_conso_row[6] = is_pref
+        mr_conso_row[13] = rid_number
+        mr_conso_row[14] = str
+
+        print(', '.join(mr_conso_row))
+        writer.writerow(mr_conso_row)
+
+    def write_mr_sty_row(self, writer, cui):
+        mr_sty_row = HEADERS_MRSTY
+
+        for i, v in self.overwrites_mr_stry.items():
+            mr_sty_row[i] = v
+
+        mr_sty_row[0] = cui
+
+        print(', '.join(mr_sty_row))
+        writer.writerow(mr_sty_row)
 
     def integrate(self):
+
         with open(self.radlex_csv, "rt", encoding='utf8') as csvfile, \
                 open(self.output_dir + MR_CONSO_SUB_PATH, "w", encoding='utf8', newline="\n") as mr_conso, \
                 open(self.output_dir + MRSTY_SUB_PATH, "w", encoding='utf8', newline="\n") as mr_sty:
@@ -75,44 +103,28 @@ class UMLScsv(object):
             writer_mr_conso = csv.writer(mr_conso, delimiter='|')
             writer_mr_sty = csv.writer(mr_sty, delimiter='|')
 
-            index = 0
             for radlex_row in reader:
-                index = index+1
-                try:
-                    mr_conso_row = HEADERS_MRCONSO
-                    mr_sty_row = HEADERS_MRSTY
 
+                try:
                     rid = radlex_row[self.cui_index].replace(RADLEX_PREFIX, '')
                     if RADLEX_PREFIX_RID not in rid:
                         continue
+                    else:
+                        is_pref = 'Y'
+                        cui = rid
+                        str = radlex_row[self.str_index]
 
-                    cui = rid
-                    if self.is_convert_rid_to_cui:
-                        cui = self.convert_rid_to_cui(rid)
+                        if self.is_convert_rid_to_cui:
+                            cui = self.convert_rid_to_cui(rid)
+                        self.write_mr_conso_row(writer_mr_conso, cui, str, is_pref, rid)
 
-                    for i, v in self.overwrites_mr_conso.items():
-                        mr_conso_row[i] = v
+                        for synonym in radlex_row[self.synonyms_index].split("|"):
+                            if len(synonym) > 1:
+                                is_pref = 'N'
+                                self.write_mr_conso_row(writer_mr_conso, cui, synonym, is_pref, rid)
 
-                    mr_conso_row[0] = cui
-                    mr_conso_row[14] = radlex_row[self.str_index]
+                        self.write_mr_sty_row(writer_mr_sty, cui)
 
-                    printrow = ', '.join(mr_conso_row)
-                    print(printrow)
-                    writer_mr_conso.writerow(mr_conso_row)
-
-                    for synonym in radlex_row[self.synonyms_index].split("|"):
-                        if len(synonym) > 1:
-                            mr_conso_row[14] = synonym
-                            writer_mr_conso.writerow(mr_conso_row)
-
-                    for i, v in self.overwrites_mr_stry.items():
-                        mr_sty_row[i] = v
-
-                    mr_sty_row[0] = cui
-
-                    printrow = ', '.join(mr_sty_row)
-                    print(printrow)
-                    writer_mr_sty.writerow(mr_sty_row)
                 except IndexError as err:
                     print("radlex_row", radlex_row)
                     print("IndexError: {0} ".format(err))

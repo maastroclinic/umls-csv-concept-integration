@@ -1,6 +1,6 @@
 {
   "cui_mode" : "Class ID",
-  "convert_rid_to_cui" : true,
+  "convert_rid_to_cui" : false,
   "mr_conso_overwrites" : {
     "lat": "ENG",
     "ts": "P",
